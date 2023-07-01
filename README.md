@@ -1,5 +1,6 @@
 # eBPF-rate-limiter
 eBPF based sliding window rate limiter with load balancer
+(Note: This is based on the tutorial given by Liz Rice in the online session for building a basic load balancer. )
 
 
 This is for simulating a sliding window based rate limiter with the load balancer using eBPF and using the XDP module in kernel to inspect the incoming packets on the interface. 
