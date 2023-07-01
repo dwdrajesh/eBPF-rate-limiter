@@ -1,8 +1,4 @@
-# TARGET = xdp_lb
-# TARGET = packetdrop
-TARGET = xdp_liz
-
-# For xdp_liz, make and also make user. The others don't have userspace programs
+ TARGET = xdp_lb_kern_load_balancer
 
 USER_TARGET = ${TARGET:=_user}
 BPF_TARGET = ${TARGET:=_kern}
@@ -25,6 +21,7 @@ $(BPF_OBJ): %.o: %.c
 	clang -S \
 	    -target bpf \
 	    -D __BPF_TRACING__ \
+	    -I/usr/include/$(shell uname -m)-linux-gnu \
 	    -Ilibbpf/src\
 	    -Wall \
 	    -Wno-unused-value \
