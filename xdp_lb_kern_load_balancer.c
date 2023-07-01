@@ -9,17 +9,18 @@
 #define LB 5
 
 typedef struct slidingwindow_t {
-	int window_size;
-	int bucket_id = 0;
-	int prev_counter = 0, curr_counter = 0;
-	unsigned time_st = 0;
-	int capacity;
+	unsigned window_size;
+	unsigned bucket_id;
+	unsigned prev_counter; 
+	unsigned curr_counter;
+	unsigned time_st;
+	unsigned capacity;
 } slidingwindow;
 
 int throttle (struct slidingwindow_t* sw, int requests)
 {
 	unsigned time_now = (unsigned) time(NULL);
-	int bucket_id = time_now/(st->window_size);
+	unsigned bucket_id = time_now/(sw->window_size);
 
 	// 1. first time
 	if (sw->bucket_id == 0)
@@ -64,6 +65,10 @@ int xdp_load_balancer(struct xdp_md *ctx)
     slidingwindow sd;
     sd.window_size = 60;
     sd.capacity = 1;
+    sd.bucket_id = 0;
+    sd.prev_counter = 0;
+    sd.curr_counter = 0;
+    sd.time_st = (unsigned) time(NULL);
 
     void *data = (void *)(long)ctx->data;
     void *data_end = (void *)(long)ctx->data_end;

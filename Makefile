@@ -1,7 +1,7 @@
  TARGET = xdp_lb_kern_load_balancer
 
 USER_TARGET = ${TARGET:=_user}
-BPF_TARGET = ${TARGET:=_kern}
+BPF_TARGET = ${TARGET:=}
 BPF_C = ${BPF_TARGET:=.c}
 BPF_OBJ = ${BPF_C:.c=.o}
 
